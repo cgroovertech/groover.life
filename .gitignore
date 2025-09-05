@@ -1,0 +1,63 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+.terraform/
+.terraform.lock.hcl
+
+# Ansible
+*.retry
+.vault_pass
+ansible.cfg.local
+host_vars/*.yml
+
+# SSH Keys & Certificates  
+*.pem
+*.key
+*.crt
+*.csr
+id_*
+!id_*.pub
+
+# Secrets & Credentials
+secrets/
+vault/
+.env
+.env.*
+auth.json
+credentials.json
+
+# Logs
+*.log
+logs/
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Docker
+docker-compose.override.yml
+
+# Local development
+local/
+dev/
+.local
