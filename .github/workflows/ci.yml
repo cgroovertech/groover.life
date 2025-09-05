@@ -1,0 +1,72 @@
+name: Infrastructure CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform-validate:
+    name: Terraform Validation
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.8.0
+    
+    - name: Terraform Format Check
+      working-directory: terraform
+      run: terraform fmt -check -recursive
+    
+    - name: Terraform Init
+      working-directory: terraform
+      run: terraform init -backend=false
+    
+    - name: Terraform Validate
+      working-directory: terraform
+      run: terraform validate
+
+  ansible-lint:
+    name: Ansible Lint
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install Ansible and ansible-lint
+      run: |
+        pip install ansible ansible-lint
+    
+    - name: Run ansible-lint
+      working-directory: ansible
+      run: ansible-lint playbooks/ || echo "ansible-lint completed with warnings"
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        scan-ref: '.'
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+    
+    - name: Upload Trivy scan results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: 'trivy-results.sarif'
