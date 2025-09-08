@@ -1,192 +1,180 @@
-# 🌐 groover.life - Enterprise Presentation Network
+# 🎯 Christian Groover - DevOps Infrastructure Portfolio
 
-[![Infrastructure](https://img.shields.io/badge/Infrastructure-Enterprise%20Grade-blue)](https://groover.life)
-[![Authentication](https://img.shields.io/badge/Auth-Single%20Factor-green)](https://groover.life)
-[![Status](https://img.shields.io/badge/Status-Production-success)](https://groover.life)
+[![Profile](https://img.shields.io/badge/Profile-DevOps%20Engineer-blue)](https://groover.life)
+[![Infrastructure](https://img.shields.io/badge/Focus-Enterprise%20Infrastructure-green)](https://groover.life)
+[![Learning](https://img.shields.io/badge/Style-Self--Taught%20&%20Open%20Source-orange)](https://groover.life)
 
-## 🎯 Overview
+## 🌟 Professional Showcase Repository
 
-The **groover.life** domain represents the public-facing showcase environment of our enterprise-grade homelab infrastructure. This domain demonstrates professional DevOps capabilities, modern authentication patterns, and production-ready services suitable for client presentations and professional portfolios.
+This repository contains the **professional portfolio and technical showcase** for Christian Groover, documenting the journey from technical support to infrastructure architecture through hands-on homelab development.
 
-### 🏗️ Architecture Principles
-- **Public Showcase**: Professional demonstration environment
-- **Single-Factor Authentication**: Streamlined access for presentations
-- **Enterprise Standards**: Production-grade configurations and monitoring
-- **Portfolio Ready**: Clean, documented, and presentation-worthy
+### 🎯 Repository Focus
+- **Career Journey**: Self-taught path from Windows support to DevOps engineering
+- **Technical Decision-Making**: Systematic architecture evolution with quantified outcomes
+- **Lessons Learned**: Real-world experience from LXC containers to Kubernetes
+- **Strategic Thinking**: Decision frameworks and risk assessment methodologies
 
-## 🚀 Services & Components
+## 📚 Showcase Content
 
-### Core Infrastructure
-- **Reverse Proxy**: Traefik with automated TLS (Let's Encrypt + Step-CA)
-- **DNS**: BIND9 with split-horizon configuration
-- **Certificate Authority**: Smallstep Step-CA for internal certificates
-- **Authentication**: Authelia with LDAP backend (LLDAP)
+### 📝 Core Articles
 
-### Presentation Services
-- **Monitoring Stack**: Prometheus + Grafana dashboards
-- **Portfolio Site**: Professional landing page and project showcase
-- **Demo Applications**: Sample microservices demonstrating best practices
-- **API Gateway**: Centralized API management and documentation
+#### [The Self-Taught Path: From Technical Support to Infrastructure Architecture](content/showcase/infrastructure-modernization-journey.md)
+**The complete professional journey story**
+- Personal transformation from Windows support to DevOps engineering
+- Learning philosophy: hands-on homelab development over certification
+- Technical evolution through real-world infrastructure challenges
+- Open source commitment and continuous learning approach
 
-### Development Tools
-- **Infrastructure as Code**: Terraform for resource provisioning
-- **Configuration Management**: Ansible for service deployment
-- **CI/CD Pipeline**: Automated testing and deployment workflows
-- **Documentation**: Live documentation and API references
+#### [Lessons Learned: From LXC to Kubernetes](content/showcase/lessons-learned-from-lxc-to-k3s.md)
+**Experience-based insights and practical wisdom**
+- Migration from 9 LXC containers to unified K3s cluster
+- What worked well vs. what created complexity
+- Architecture decisions and their real-world impact
+- Quantified outcomes: 44% resource savings, 99% faster deployments
+- Actionable advice for other infrastructure engineers
 
-## 🌍 Network Architecture
+#### [Architecture Evolution: Critical Decision Making Process](content/showcase/architecture-evolution-decisions.md)
+**Strategic thinking and systematic decision-making**
+- Weighted decision matrices for technology selection
+- Risk assessment and mitigation strategies
+- K3s vs. alternatives analysis with scoring
+- Custom LLM platform vs. commercial solutions rationale
+- PostgresML + PGAI architectural choices
 
-### Domain Structure
-```
-groover.life/
-├── www.groover.life          # Professional portfolio and consulting services
-├── api.groover.life          # API gateway and technical documentation  
-├── monitor.groover.life      # Live monitoring dashboards (Grafana + Prometheus + Wazuh)
-├── auth.groover.life         # Enterprise SSO authentication portal
-└── demo.groover.life         # Technical demonstration applications
-```
+## 🚀 Technical Highlights
 
-### Enterprise Technology Stack
-- **Zero Trust VPN**: NetBird mesh networking with cloud integration
-- **Security Platform**: Wazuh SIEM/XDR for enterprise threat detection
-- **Infrastructure as Code**: Terraform + Ansible automation
-- **Monitoring Stack**: Prometheus metrics, Grafana dashboards, alerting
-- **Certificate Authority**: Private PKI with automated lifecycle management
-- **Identity Provider**: LDAP directory with SSO and MFA capabilities
+### 🏆 Key Accomplishments
+
+**Resource Optimization**
+- **44% Resource Efficiency Improvement**: From 36GB static allocation to ~20GB dynamic usage
+- **89% Reduction in Management Touchpoints**: From 9 separate containers to unified cluster
+- **99%+ Faster Deployments**: From manual 1+ hour provisioning to <30 second Helm deployments
+
+**Technology Evolution**
+- **LXC to K3s Migration**: Enterprise-grade orchestration with homelab efficiency
+- **VyOS to Proxmox SDN**: Native EVPN-VXLAN with FRR routing
+- **Custom LLM Platform**: PostgresML + PGAI for infrastructure intelligence
+- **GitOps Workflow**: Sealed Secrets + 1Password integration
+
+### 🎯 Strategic Decision Framework
+
+**Systematic Evaluation Process**
+1. Problem Definition → Options Analysis → Trade-off Evaluation
+2. Risk Assessment → Future Proofing → Quantified Validation
+3. Weighted Scoring Matrices for objective technology selection
+4. Comprehensive mitigation strategies for identified risks
+
+## 🏗️ Professional Value Proposition
+
+### 💼 Core Competencies Demonstrated
+
+**Infrastructure Architecture**
+- Enterprise-grade homelab design and implementation
+- Migration strategies from legacy to modern platforms
+- Resource optimization and performance analysis
+- Risk assessment and mitigation planning
+
+**Technology Leadership**
+- Self-directed learning and rapid skill acquisition
+- Open source tool evaluation and selection
+- Custom solution development when needed
+- Strategic technology decision-making
+
+**Operational Excellence**
+- Infrastructure as Code (IaC) implementation
+- CI/CD pipeline design and automation
+- Monitoring and observability platforms
+- Security integration and compliance preparation
 
 ## 📁 Repository Structure
 
 ```
 groover.life/
-├── terraform/
-│   ├── modules/              # Reusable Terraform modules
-│   ├── environments/
-│   │   ├── staging/          # Staging environment config
-│   │   └── production/       # Production environment config
-│   └── providers.tf          # Provider configurations
-├── ansible/
-│   ├── playbooks/           # Service deployment playbooks
-│   ├── roles/               # Reusable Ansible roles
-│   ├── inventory/           # Environment inventories
-│   └── group_vars/          # Group-specific variables
-├── services/
-│   ├── traefik/             # Reverse proxy configuration
-│   ├── monitoring/          # Prometheus & Grafana configs
-│   ├── portfolio/           # Portfolio website source
-│   └── demo-apps/           # Demonstration applications
-├── docs/
-│   ├── architecture/        # Architecture documentation
-│   ├── deployment/          # Deployment procedures
-│   └── api/                 # API documentation
-└── .github/
-    └── workflows/           # GitHub Actions CI/CD pipelines
+├── content/showcase/        # Professional showcase articles
+│   ├── infrastructure-modernization-journey.md
+│   ├── lessons-learned-from-lxc-to-k3s.md
+│   └── architecture-evolution-decisions.md
+├── RESTRUCTURE_PLAN.md      # Repository reorganization strategy
+└── README.md                # This professional overview
 ```
 
-## 🔧 Quick Start
+### 📄 Additional Documentation
 
-### Prerequisites
-- Access to Proxmox VE cluster
-- Step-CA certificates configured
-- LDAP directory service running
-- Terraform and Ansible installed
+**[Repository Restructure Plan](RESTRUCTURE_PLAN.md)**
+- Strategic pivot from technical deployment to professional showcase
+- Content organization for career development
+- Portfolio positioning and narrative structure
 
-### Deployment
-```bash
-# Clone repository
-git clone https://github.com/thefrankyes1/groover.life.git
-cd groover.life
+## 🎯 Career Positioning & Value
 
-# Initialize Terraform
-cd terraform/environments/production
-terraform init
-terraform plan
-terraform apply
+### 📈 Professional Growth Trajectory
 
-# Deploy services with Ansible
-cd ../../../ansible
-ansible-playbook -i inventory/production.yml playbooks/deploy-all.yml
-```
+**Self-Taught Success Story**
+- Transition from Windows technical support to DevOps engineering
+- Continuous learning through hands-on homelab development
+- Open source commitment and community contribution mindset
+- Problem-solving through systematic experimentation and documentation
 
-## 🏆 Enterprise Features
+**Technical Leadership Capabilities**
+- Architecture decision-making with quantified business impact
+- Risk assessment and mitigation strategy development
+- Technology evaluation using weighted scoring methodologies
+- Resource optimization and operational efficiency improvements
 
-### High Availability
-- Load-balanced reverse proxy with health checks
-- Database replication and backup strategies
-- Service discovery and automatic failover
+### 🏆 Differentiating Characteristics
 
-### Security
-- Certificate-based authentication (Step-CA)
-- Network segmentation with VLANs
-- Security scanning and vulnerability management
-- Audit logging and compliance reporting
+**Systematic Approach**
+- Decision frameworks that scale from homelab to enterprise
+- Comprehensive documentation of lessons learned and best practices
+- Quantified outcomes and measurable improvement metrics
+- Continuous improvement mindset with iterative enhancement
 
-### Monitoring & Observability
-- Real-time metrics and alerting (Prometheus + Grafana)
-- Centralized logging (Loki + Promtail)
-- Distributed tracing capabilities
-- Performance monitoring and SLA tracking
+## 🔧 Core Technology Stack
 
-### Development Workflow
-- Infrastructure as Code with version control
-- Automated testing and deployment pipelines
-- Blue/green deployment strategies
-- Feature flag management
+### **Current Infrastructure (bone.hive)**
+- **Compute**: Proxmox VE cluster (pve1, pve2) with LXC containers
+- **Networking**: VyOS router + VLAN segmentation
+- **Identity**: LLDAP + Authelia + Step-CA
+- **Automation**: Terraform + Ansible + GitLab CI/CD
+- **Data**: PostgreSQL with AI/ML extensions (PostgresML + PGAI)
 
-## 🎆 Professional Services
+### **Future Architecture (boneyard.one)**
+- **Orchestration**: K3s with external PostgreSQL datastore
+- **Networking**: Proxmox SDN + FRR (EVPN-VXLAN)
+- **AI Platform**: Custom LLM with infrastructure knowledge
+- **GitOps**: Sealed Secrets + ArgoCD/Flux
+- **Monitoring**: Prometheus + Grafana + Loki + Wazuh SIEM
 
-### **Infrastructure Modernization**
-- Cloud-native architecture design and implementation
-- Legacy system migration to containerized environments
-- Infrastructure as Code implementation (Terraform + Ansible)
-- Zero Trust security architecture deployment
+## 🔗 Professional Links
 
-### **DevOps Transformation**
-- CI/CD pipeline design with automated testing and security scanning
-- Configuration management and infrastructure automation
-- Monitoring and observability platform implementation
-- Team training and cultural transformation consulting
+### **Portfolio & Documentation**
+- **Technical Infrastructure**: [bone.hive repository](https://github.com/thefrankyes1/homelab-infrastructure)
+- **Professional Showcase**: [This repository](https://github.com/thefrankyes1/groover.life)
+- **Future Migration**: boneyard.one (planned repository)
 
-### **Security Engineering** 
-- SIEM/XDR platform deployment and custom rule development
-- PKI implementation with automated certificate lifecycle management
-- Compliance program development (NIST, SOC 2, CIS benchmarks)
-- Incident response planning and threat hunting procedures
+### **Connect & Contact**
+- **GitHub**: [@thefrankyes1](https://github.com/thefrankyes1)
+- **Professional Site**: [groover.life](https://groover.life) (when live)
+- **Technical Blog**: Coming soon
 
-### **Training & Workshops**
-- Infrastructure as Code best practices and advanced techniques
-- Security operations and threat detection methodologies
-- Monitoring and alerting design patterns
-- Cloud architecture and cost optimization strategies
+---
 
-## 🏆 Enterprise Capabilities Demonstrated
+## 🎨 About This Portfolio
 
-### **Infrastructure Automation**
-- **95% Reduction** in manual deployment time through automation
-- **99.9% Uptime** achieved through redundancy and monitoring
-- **Immutable Infrastructure**: All services deployed as code
-- **GitOps Workflow**: Infrastructure changes via pull requests
+This repository demonstrates **systematic thinking, strategic decision-making, and quantified outcomes** through real-world infrastructure development. Rather than just showing what was built, it explains **why decisions were made** and **how success was measured**.
 
-### **Security Excellence**
-- **Zero Trust Architecture**: Network micro-segmentation with policy enforcement
-- **SIEM Integration**: Real-time threat detection with Wazuh platform
-- **Certificate Automation**: Private PKI with automatic renewal
-- **Multi-Factor Authentication**: TOTP-based access control
+The content here represents the professional growth of a self-taught engineer who values:
+- 🔥 **Hands-on learning** over certification collecting
+- 🔓 **Open source solutions** and community contribution
+- 📈 **Measurable outcomes** and continuous improvement
+- 🚀 **Strategic thinking** that scales from homelab to enterprise
 
-### **Operational Excellence**
-- **Multi-Cloud Monitoring**: Hybrid cloud + on-premises observability
-- **Custom Integration**: AI-assisted infrastructure management (MCP protocol)
-- **Automated Compliance**: Continuous security configuration assessment
-- **Disaster Recovery**: Tested backup and restoration procedures
+**Perfect for**: Hiring managers and technical leaders looking for engineers who combine technical depth with business impact awareness.
 
-## 🔗 Links
-
-- **Live Environment**: [https://groover.life](https://groover.life)
-- **Monitoring Dashboard**: [https://monitor.groover.life](https://monitor.groover.life)
-- **API Documentation**: [https://api.groover.life](https://api.groover.life)
+---
 
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
-*Enterprise homelab infrastructure demonstrating production-ready DevOps practices and modern application architecture.*
+*Professional infrastructure portfolio showcasing the journey from technical support to DevOps architecture through systematic homelab development.*
