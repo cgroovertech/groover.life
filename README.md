@@ -358,7 +358,3 @@ graph LR
 - [GitLab CI/CD Platform](projects/gitlab-cicd.md)
 - [Documentation Restructure](projects/documentation-restructure.md)
 - [1Password Integration](projects/1password-integration.md)
-
----
-
-This portfolio focuses on clarity, measurable outcomes, and real-world implementations rather than buzzwords. If you’d like the deeper technical breakdowns, see the case studies and articles above.
