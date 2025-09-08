@@ -1,0 +1,63 @@
+# GitHub Pages configuration for groover.life portfolio
+title: "Christian Groover - DevOps Infrastructure Portfolio"
+description: "Professional portfolio showcasing the journey from technical support to infrastructure architecture through hands-on homelab development."
+author: "Christian Groover"
+email: "contact@groover.life"
+url: "https://thefrankyes1.github.io/groover.life"
+baseurl: "/groover.life"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# Exclude files from build
+exclude:
+  - README.md
+  - RESTRUCTURE_PLAN.md
+  - .gitignore
+  - Gemfile
+  - Gemfile.lock
+
+# Collections for organized content
+collections:
+  showcase:
+    output: true
+    permalink: /:collection/:name/
+  case-studies:
+    output: true
+    permalink: /:collection/:name/
+
+# Default layout for collections
+defaults:
+  - scope:
+      path: "content/showcase"
+      type: "showcase"
+    values:
+      layout: "default"
+  - scope:
+      path: "content/case-studies" 
+      type: "case-studies"
+    values:
+      layout: "default"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# SEO and social media
+twitter:
+  username: thefrankyes1
+github:
+  username: thefrankyes1
+  repository_url: https://github.com/thefrankyes1/groover.life
+
+# Social links
+social:
+  name: Christian Groover
+  links:
+    - https://github.com/thefrankyes1
+    - https://github.com/thefrankyes1/homelab-infrastructure
+    - https://github.com/thefrankyes1/groover.life
