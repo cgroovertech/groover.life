@@ -107,9 +107,15 @@ graph TB
 
 ## 📄 **Featured Reading**
 
-- [The Self-Taught Path](content/showcase/infrastructure-modernization-journey.md)
-- [Lessons Learned: From LXC to K3s](content/showcase/lessons-learned-from-lxc-to-k3s.md)
-- [Architecture Evolution Decisions](content/showcase/architecture-evolution-decisions.md)
+**Showcase Articles**
+- [The Self-Taught Path](showcase/self-taught-path.md)
+- [Lessons Learned](showcase/lessons-learned.md)
+- [Architecture Decisions](showcase/architecture-decisions.md)
+
+**Project Case Studies**
+- [GitLab CI/CD Platform](projects/gitlab-cicd.md)
+- [Documentation Restructure](projects/documentation-restructure.md)
+- [1Password Integration](projects/1password-integration.md)
 
 ---
 

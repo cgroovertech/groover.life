@@ -1,9 +1,9 @@
 # GitHub Pages configuration for groover.life portfolio
-title: "Christian Groover - DevOps Infrastructure Portfolio"
-description: "Professional portfolio showcasing the journey from technical support to infrastructure architecture through hands-on homelab development."
+title: "Christian Groover (@cgroovertech) - DevOps Portfolio"
+description: "Self-taught DevOps engineer showcasing enterprise infrastructure with quantified outcomes."
 author: "Christian Groover"
 email: "contact@groover.life"
-url: "https://thefrankyes1.github.io/groover.life"
+url: "https://cgroovertech.github.io/groover.life"
 baseurl: "/groover.life"
 
 # Build settings
@@ -48,16 +48,13 @@ plugins:
   - jekyll-seo-tag
 
 # SEO and social media
-twitter:
-  username: thefrankyes1
 github:
-  username: thefrankyes1
-  repository_url: https://github.com/thefrankyes1/groover.life
+  username: cgroovertech
+  repository_url: https://github.com/cgroovertech/groover.life
 
 # Social links
 social:
   name: Christian Groover
   links:
-    - https://github.com/thefrankyes1
-    - https://github.com/thefrankyes1/homelab-infrastructure
-    - https://github.com/thefrankyes1/groover.life
+    - https://github.com/cgroovertech
+    - https://github.com/cgroovertech/groover.life
