@@ -212,14 +212,74 @@ graph TD
     style PVE1 fill:#2196f3,stroke:#1976d2,color:#fff
 ```
 
+### 🌐 **Site-to-Site VPN Architecture**
+
+```mermaid
+graph LR
+    subgraph "Primary Site - 10.0.0.0/16"
+        HomeLab["Homelab Network<br/>🏗️ 10.0.0.0/16"]
+        NetBirdA["NetBird Peer A<br/>🔗 Routing Peer"]
+        VyOSA["VyOS Router<br/>🗺 Gateway"]
+    end
+    
+    subgraph "NetBird Cloud"
+        NetBirdCloud["NetBird Controller<br/>☁️ Mesh Management"]
+        ACLEngine["ACL Engine<br/>🔒 Policy Control"]
+    end
+    
+    subgraph "Remote Site - 192.168.0.0/24"
+        RemoteNet["Remote Network<br/>🏠 192.168.0.0/24"]
+        NetBirdB["NetBird Peer B<br/>🔗 Routing Peer"]
+        RemoteGW["Remote Gateway<br/>🗺 Router"]
+    end
+    
+    subgraph "Network Policies"
+        Policy1["Allow: Management<br/>✅ 10.0.10.0/24 → 192.168.0.0/24"]
+        Policy2["Block: Direct Access<br/>❌ Services → Remote"]
+        Policy3["Route: Specific Subnets<br/>🔀 Selective Routing"]
+    end
+    
+    HomeLab --> NetBirdA
+    NetBirdA -.-> NetBirdCloud
+    NetBirdCloud -.-> NetBirdB
+    NetBirdB --> RemoteNet
+    
+    VyOSA --> NetBirdA
+    RemoteGW --> NetBirdB
+    
+    NetBirdCloud --> ACLEngine
+    ACLEngine -.-> Policy1
+    ACLEngine -.-> Policy2
+    ACLEngine -.-> Policy3
+    
+    style HomeLab fill:#2196f3,stroke:#1976d2,color:#fff
+    style NetBirdA fill:#ff9800,stroke:#f57c00,color:#fff
+    style NetBirdCloud fill:#4caf50,stroke:#388e3c,color:#fff
+    style ACLEngine fill:#f44336,stroke:#d32f2f,color:#fff
+    style RemoteNet fill:#9c27b0,stroke:#7b1fa2,color:#fff
+    style NetBirdB fill:#ff9800,stroke:#f57c00,color:#fff
+    style Policy1 fill:#4caf50,stroke:#388e3c,color:#fff
+    style Policy2 fill:#f44336,stroke:#d32f2f,color:#fff
+    style Policy3 fill:#ff9800,stroke:#f57c00,color:#fff
+    style VyOSA fill:#607d8b,stroke:#455a64,color:#fff
+    style RemoteGW fill:#607d8b,stroke:#455a64,color:#fff
+```
+
 ### 📈 **Production Infrastructure**
 
 **Compute & Network**
 - **Proxmox VE Cluster**: 2 nodes (pve1, pve2) with LACP bonding
 - **LXC Containers**: 14 total containers (9 services + 2 automation + 3 monitoring)
 - **Network**: VyOS router + SuperMicro SSE-G2252 managed switch
-- **VPN**: NetBird mesh for secure remote access
+- **VPN**: NetBird mesh with site-to-site routing
 - **Port Channels**: 3 LACP configurations for redundancy
+
+**Site-to-Site Connectivity**
+- **Primary Network**: 10.0.0.0/16 (homelab infrastructure)
+- **Remote Network**: 192.168.0.0/24 (branch office/remote site)
+- **Routing Peers**: NetBird peers with selective subnet routing
+- **ACL Controls**: Policy-based access control between networks
+- **Management Access**: Controlled 10.0.10.0/24 → 192.168.0.0/24 routing
 
 **Storage Infrastructure**
 - **Synology NAS**: 32TB RAID 10, 12-disk array with LACP
@@ -248,10 +308,11 @@ graph TD
 - **Features**: 7-stage pipeline, distributed runners, approval gates
 - **Integration**: DNS, certificates, authentication, secrets
 
-### 📝 **Infrastructure Documentation**
-- **Improvement**: 70% size reduction, 90% usability gain
-- **Approach**: Information architecture, progressive disclosure
-- **Result**: Enterprise-ready documentation standards
+### 🌐 **Advanced Networking & VPN**
+- **Site-to-Site**: NetBird routing between 10.0.0.0/16 and 192.168.0.0/24
+- **Access Control**: Policy-based ACL routing with selective subnet access
+- **High Availability**: LACP bonding across Proxmox, NAS, and network infrastructure
+- **Security**: Zero-trust mesh networking with encrypted peer-to-peer tunnels
 
 ### 🔐 **1Password Security Integration**
 - **Achievement**: 100% secret automation, zero plaintext exposure
@@ -266,8 +327,11 @@ graph TD
 **Infrastructure**  
 `Proxmox VE` • `VyOS` • `Terraform` • `Ansible` • `NetBird`
 
-**Networking & Storage**  
-`SuperMicro Switch` • `LACP Bonding` • `VLAN Trunking` • `Synology` • `ReadyNas`
+**Advanced Networking**  
+`Site-to-Site VPN` • `ACL Routing` • `LACP Bonding` • `VLAN Trunking` • `Mesh Networking`
+
+**Storage & Hardware**  
+`SuperMicro SSE-G2252` • `Synology RAID 10` • `ReadyNas` • `32TB Arrays`
 
 **CI/CD & Security**  
 `GitLab CE` • `1Password` • `Authelia` • `Traefik` • `Wazuh SIEM`
