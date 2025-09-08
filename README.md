@@ -15,56 +15,164 @@
 • **Enterprise Security** - Zero-credential exposure with 1Password integration  
 • **Self-Taught Excellence** - Windows support → DevOps architecture
 
-## 🏗️ **Deployment Architecture**
+## 🏗️ **Infrastructure Architecture**
 
 ```mermaid
 graph TB
-    subgraph "Control Plane"
-        Mac["MacBook Pro<br/>💻 Development"]
+    subgraph "Development & Control"
+        Mac["MacBook Pro<br/>💻 Local Dev"]
         Git["GitHub<br/>💾 Source Control"]
+        NetBird["NetBird VPN<br/>🌐 Mesh Network"]
     end
     
-    subgraph "Infrastructure Layer"
-        Proxmox["Proxmox VE<br/>🏗️ Hypervisor"]
-        Net["VyOS Router<br/>🌐 Network"]
+    subgraph "Proxmox Infrastructure"
+        Proxmox["Proxmox VE Cluster<br/>🏗️ pve1 + pve2"]
+        VyOS["VyOS Router<br/>🗺 SuperMicro Switch"]
     end
     
-    subgraph "Kubernetes Cluster"
-        K3s["K3s Master<br/>⚙️ Orchestrator"]
-        Traefik["Traefik<br/>🌍 Ingress"]
-        GitLab["GitLab CE<br/>🤖 CI/CD"]
+    subgraph "VLAN 10 - Management"
+        Terraform["PCT 2010<br/>Terraform Container"]
+        Ansible["PCT 2011<br/>Ansible Container"]
+        Postgres["PCT 120<br/>PostgreSQL + AI"]
     end
     
-    subgraph "Services Layer"
-        Auth["Authelia<br/>🔐 SSO/MFA"]
-        DNS["Bind9<br/>🎯 DNS"]
-        Vault["1Password<br/>🗝️ Secrets"]
-        DB["PostgreSQL<br/>🗄 Database"]
+    subgraph "VLAN 101 - Edge Services"
+        Traefik["PCT 111<br/>🌍 Traefik Proxy"]
     end
     
+    subgraph "VLAN 110 - Applications"
+        GitLab["PCT 119<br/>🤖 GitLab CE"]
+    end
+    
+    subgraph "VLAN 120 - Authentication"
+        Bind9["PCT 109<br/>🎯 Bind9 DNS"]
+        StepCA["PCT 114<br/>🔒 Step-CA"]
+        LLDAP["PCT 117<br/>🗂 LLDAP Directory"]
+        Authelia["PCT 118<br/>🔐 Authelia SSO"]
+    end
+    
+    subgraph "External Services"
+        OnePass["1Password<br/>🗝️ Enterprise Vault"]
+    end
+    
+    Mac -.-> NetBird
+    NetBird --> Proxmox
     Mac --> Git
     Git --> GitLab
-    Mac --> Proxmox
-    Proxmox --> K3s
-    Net --> Traefik
-    K3s --> Traefik
-    K3s --> GitLab
-    K3s --> Auth
-    K3s --> DNS
-    K3s --> DB
-    Vault --> GitLab
+    Proxmox --> VyOS
+    VyOS --> Traefik
     
-    style Mac fill:#e1f5fe
-    style Git fill:#f3e5f5
-    style K3s fill:#e8f5e8
-    style Traefik fill:#fff3e0
+    Terraform --> Proxmox
+    Ansible --> Terraform
+    Ansible --> GitLab
+    GitLab --> Terraform
+    GitLab --> Ansible
+    
+    Traefik --> GitLab
+    Traefik --> Authelia
+    Authelia --> LLDAP
+    StepCA --> Traefik
+    StepCA --> GitLab
+    Bind9 -.-> Authelia
+    Bind9 -.-> GitLab
+    Bind9 -.-> Traefik
+    
+    OnePass --> GitLab
+    OnePass --> Ansible
+    Postgres --> GitLab
+    
+    style Mac fill:#2196f3,stroke:#1976d2,color:#fff
+    style Git fill:#4caf50,stroke:#388e3c,color:#fff
+    style NetBird fill:#ff9800,stroke:#f57c00,color:#fff
+    style Proxmox fill:#9c27b0,stroke:#7b1fa2,color:#fff
+    style VyOS fill:#607d8b,stroke:#455a64,color:#fff
+    style Traefik fill:#00bcd4,stroke:#0097a7,color:#fff
+    style GitLab fill:#e91e63,stroke:#c2185b,color:#fff
+    style Bind9 fill:#3f51b5,stroke:#303f9f,color:#fff
+    style StepCA fill:#795548,stroke:#5d4037,color:#fff
+    style LLDAP fill:#8bc34a,stroke:#689f38,color:#fff
+    style Authelia fill:#ff5722,stroke:#e64a19,color:#fff
+    style OnePass fill:#2196f3,stroke:#1976d2,color:#fff
+    style Terraform fill:#673ab7,stroke:#512da8,color:#fff
+    style Ansible fill:#f44336,stroke:#d32f2f,color:#fff
+    style Postgres fill:#009688,stroke:#00796b,color:#fff
 ```
 
-### 📊 **Key Metrics**
-- **Infrastructure**: 2 Proxmox nodes, 15+ services
-- **Automation**: 95% deployment automation via GitLab CI/CD
-- **Security**: Zero-credential storage, enterprise MFA
-- **Performance**: <30 second deployments, 99.9% uptime
+### 🌐 **Network Architecture**
+
+```mermaid
+graph TD
+    Internet["Internet<br/>🌍 External"]
+    VyOS["VyOS Router<br/>🗺 Gateway"]
+    Switch["SuperMicro Switch<br/>🔌 SSE-G2252"]
+    
+    subgraph "VLAN 10 - Management (10.0.10.0/24)"
+        T["PCT 2010<br/>Terraform"]
+        A["PCT 2011<br/>Ansible"]
+        P["PCT 120<br/>PostgreSQL"]
+    end
+    
+    subgraph "VLAN 101 - Edge (10.0.101.0/24)"
+        TR["PCT 111<br/>Traefik"]
+    end
+    
+    subgraph "VLAN 110 - Apps (10.0.110.0/24)"
+        GL["PCT 119<br/>GitLab"]
+    end
+    
+    subgraph "VLAN 120 - Auth (10.0.120.0/24)"
+        B["PCT 109<br/>Bind9"]
+        S["PCT 114<br/>Step-CA"]
+        L["PCT 117<br/>LLDAP"]
+        AU["PCT 118<br/>Authelia"]
+    end
+    
+    Internet --> VyOS
+    VyOS --> Switch
+    Switch --> T
+    Switch --> A
+    Switch --> P
+    Switch --> TR
+    Switch --> GL
+    Switch --> B
+    Switch --> S
+    Switch --> L
+    Switch --> AU
+    
+    style Internet fill:#ff5722,stroke:#d32f2f,color:#fff
+    style VyOS fill:#607d8b,stroke:#455a64,color:#fff
+    style Switch fill:#795548,stroke:#5d4037,color:#fff
+    style T fill:#673ab7,stroke:#512da8,color:#fff
+    style A fill:#f44336,stroke:#d32f2f,color:#fff
+    style P fill:#009688,stroke:#00796b,color:#fff
+    style TR fill:#00bcd4,stroke:#0097a7,color:#fff
+    style GL fill:#e91e63,stroke:#c2185b,color:#fff
+    style B fill:#3f51b5,stroke:#303f9f,color:#fff
+    style S fill:#795548,stroke:#5d4037,color:#fff
+    style L fill:#8bc34a,stroke:#689f38,color:#fff
+    style AU fill:#ff5722,stroke:#e64a19,color:#fff
+```
+
+### 📈 **Production Infrastructure**
+
+**Compute & Network**
+- **Proxmox VE Cluster**: 2 nodes (pve1, pve2)
+- **LXC Containers**: 9 production services + 2 automation containers
+- **Network**: VyOS router + SuperMicro managed switch
+- **VPN**: NetBird mesh for secure remote access
+
+**Service Architecture**
+- **VLAN Segmentation**: 4 VLANs (Management, Edge, Apps, Auth)
+- **DNS**: Bind9 authoritative server for .lan domains
+- **TLS**: Step-CA private certificate authority
+- **Identity**: LLDAP + Authelia enterprise SSO/MFA
+- **CI/CD**: GitLab CE with distributed runners
+- **Database**: PostgreSQL with AI/ML extensions
+
+**Security & Automation**
+- **Zero-credential storage**: 1Password enterprise integration
+- **GitOps workflow**: Infrastructure as Code with approval gates
+- **95% automation**: Terraform + Ansible + GitLab pipelines
 
 ## 📚 **Featured Projects**
 
