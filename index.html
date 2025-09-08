@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Groover - DevOps Infrastructure Portfolio</title>
+    <meta name="description" content="Professional portfolio showcasing the journey from technical support to infrastructure architecture through hands-on homelab development.">
+    <meta name="keywords" content="DevOps, Infrastructure, Kubernetes, Self-taught, Open Source">
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="Christian Groover - DevOps Infrastructure Portfolio">
+    <meta property="og:description" content="Self-taught DevOps engineer showcasing systematic infrastructure development with quantified outcomes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thefrankyes1.github.io/groover.life">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --background-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --border-color: #e9ecef;
+            --hover-color: #ecf0f1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.3);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .badge:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        /* Navigation */
+        .nav {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            background: var(--hover-color);
+            color: var(--secondary-color);
+        }
+        
+        /* Main Content */
+        .main {
+            padding: 3rem 0;
+        }
+        
+        .section {
+            margin-bottom: 4rem;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .section-intro {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #666;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .card .description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .card li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .read-more:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Stats Section */
+        .stats {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .stats h3 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background: var(--background-color);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-color);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            margin-bottom: 2rem;
+        }
+        
+        .footer h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 1rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>Christian Groover</h1>
+                <p class="subtitle">DevOps Infrastructure Portfolio</p>
+                <div class="badges">
+                    <span class="badge">🎯 Self-Taught Engineer</span>
+                    <span class="badge">🏗️ Enterprise Infrastructure</span>
+                    <span class="badge">🔓 Open Source Advocate</span>
+                    <span class="badge">📊 Quantified Outcomes</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#journey" class="nav-link">Professional Journey</a>
+                <a href="#showcase" class="nav-link">Showcase Articles</a>
+                <a href="#case-studies" class="nav-link">Case Studies</a>
+                <a href="#contact" class="nav-link">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Introduction Section -->
+            <section id="journey" class="section">
+                <h2>🌟 Professional Journey</h2>
+                <p class="section-intro">
+                    From Windows technical support to DevOps infrastructure architecture through hands-on homelab development. 
+                    This portfolio documents the systematic transformation of technical skills, decision-making frameworks, 
+                    and quantified outcomes that demonstrate enterprise-ready capabilities.
+                </p>
+                
+                <div class="stats">
+                    <h3>🏆 Key Achievements</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">44%</span>
+                            <span class="stat-label">Resource Efficiency Gain</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">99%+</span>
+                            <span class="stat-label">Faster Deployments</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">89%</span>
+                            <span class="stat-label">Reduced Complexity</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Audit Compliance</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Showcase Articles -->
+            <section id="showcase" class="section">
+                <h2>📚 Showcase Articles</h2>
+                <p class="section-intro">
+                    In-depth articles demonstrating strategic thinking, technical decision-making, and lessons learned 
+                    through real-world infrastructure development.
+                </p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>🎯 The Self-Taught Path</h3>
+                        <p class="description">From Technical Support to Infrastructure Architecture</p>
+                        <ul>
+                            <li>Personal transformation journey and learning philosophy</li>
+                            <li>Hands-on homelab development over certification</li>
+                            <li>Open source commitment and continuous learning</li>
+                            <li>Technical evolution through real-world challenges</li>
+                        </ul>
+                        <a href="content/showcase/infrastructure-modernization-journey.md" class="read-more">Read Article</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📖 Lessons Learned</h3>
+                        <p class="description">From LXC to Kubernetes Migration Experience</p>
+                        <ul>
+                            <li>9 container to unified K3s cluster migration</li>
+                            <li>What worked well vs. complexity challenges</li>
+                            <li>Quantified outcomes and performance metrics</li>
+                            <li>Actionable advice for other engineers</li>
+                        </ul>
+                        <a href="content/showcase/lessons-learned-from-lxc-to-k3s.md" class="read-more">Read Article</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>⚖️ Architecture Evolution</h3>
+                        <p class="description">Critical Decision Making Process</p>
+                        <ul>
+                            <li>Weighted decision matrices for technology selection</li>
+                            <li>Risk assessment and mitigation strategies</li>
+                            <li>K3s vs. alternatives systematic analysis</li>
+                            <li>Custom LLM platform rationale and design</li>
+                        </ul>
+                        <a href="content/showcase/architecture-evolution-decisions.md" class="read-more">Read Article</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Case Studies -->
+            <section id="case-studies" class="section">
+                <h2>🎬 Case Studies</h2>
+                <p class="section-intro">
+                    Detailed project case studies with timelines, challenges, solutions, and measurable business impact.
+                </p>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <h3>🚀 GitLab Enterprise CI/CD</h3>
+                        <p class="description">Enterprise CI/CD Platform Deployment</p>
+                        <ul>
+                            <li>95% deployment automation achieved</li>
+                            <li>7-stage enterprise pipeline with approval gates</li>
+                            <li>87% time reduction in deployment cycles</li>
+                            <li>Complete integration with DNS, certs, auth</li>
+                        </ul>
+                        <a href="content/case-studies/gitlab-enterprise-deployment.md" class="read-more">Read Case Study</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📝 Documentation Restructure</h3>
+                        <p class="description">WARP.md Modernization & Cleanup</p>
+                        <ul>
+                            <li>70% size reduction while preserving information</li>
+                            <li>90% improvement in usability and discovery</li>
+                            <li>Enterprise documentation standards applied</li>
+                            <li>Information architecture excellence demonstrated</li>
+                        </ul>
+                        <a href="content/case-studies/warp-documentation-restructure.md" class="read-more">Read Case Study</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🔐 1Password Integration</h3>
+                        <p class="description">Enterprise Secret Management Implementation</p>
+                        <ul>
+                            <li>100% secret automation with zero plaintext exposure</li>
+                            <li>95% time reduction in credential management</li>
+                            <li>Enterprise audit compliance capability</li>
+                            <li>Seamless CI/CD and automation integration</li>
+                        </ul>
+                        <a href="content/case-studies/1password-enterprise-integration.md" class="read-more">Read Case Study</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>🔗 Professional Links</h3>
+                <div class="footer-links">
+                    <a href="https://github.com/thefrankyes1/homelab-infrastructure" class="footer-link">🏗️ Technical Infrastructure</a>
+                    <a href="https://github.com/thefrankyes1/groover.life" class="footer-link">📚 This Portfolio</a>
+                    <a href="https://github.com/thefrankyes1" class="footer-link">💻 GitHub Profile</a>
+                    <a href="mailto:contact@groover.life" class="footer-link">📧 Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Christian Groover. Professional infrastructure portfolio showcasing the journey from technical support to DevOps architecture.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add active state to navigation based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.background = '';
+                link.style.color = '';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.background = 'var(--hover-color)';
+                    link.style.color = 'var(--secondary-color)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
